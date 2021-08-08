@@ -1,5 +1,6 @@
 package com.vsdev.electronics.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import javax.persistence.*;
@@ -11,10 +12,14 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private int id;
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
     @Column(unique = true)
+    @NotNull
     private String login;
     private Address address;
     @OneToOne(cascade = CascadeType.ALL)
