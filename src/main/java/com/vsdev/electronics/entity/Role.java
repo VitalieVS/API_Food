@@ -2,6 +2,7 @@ package com.vsdev.electronics.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -21,7 +22,7 @@ public class Role {
     @NotNull
     private String roleName;
 
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_permissions",
             joinColumns = @JoinColumn(

@@ -3,6 +3,7 @@ package com.vsdev.electronics.entity;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 
 @AllArgsConstructor
@@ -13,13 +14,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private int id;
     @NotNull
     private String name;
     @NotNull
     private String surname;
-    @Column(unique = true, name = "email")
+    @Column(name = "email")
     @NotNull
     private String login;
     @OneToOne(cascade = CascadeType.ALL)
