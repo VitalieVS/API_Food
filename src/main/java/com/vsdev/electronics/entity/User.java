@@ -18,7 +18,7 @@ public class User {
     private String name;
     @NotNull
     private String surname;
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     @NotNull
     private String login;
     private Address address;
