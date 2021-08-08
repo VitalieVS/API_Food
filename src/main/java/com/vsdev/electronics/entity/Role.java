@@ -14,6 +14,7 @@ public class Role {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private int id;
 
     @Column(name = "role_name")
@@ -25,9 +26,9 @@ public class Role {
             name = "roles_permissions",
             joinColumns = @JoinColumn(
                     name = "role_id",
-                    referencedColumnName = "id"),
+                    referencedColumnName = "role_id"),
             inverseJoinColumns = @JoinColumn(
                     name = "permission_id",
-                    referencedColumnName = "id"))
+                    referencedColumnName = "permission_id"))
     private Collection<Permission> permissions;
 }

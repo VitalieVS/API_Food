@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Permission {
     @Id
     @NotNull
+    @Column(name = "permission_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;

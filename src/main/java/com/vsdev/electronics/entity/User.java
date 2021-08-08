@@ -13,6 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
+    @Column(name = "user_id")
     private int id;
     @NotNull
     private String name;
@@ -21,6 +22,12 @@ public class User {
     @Column(unique = true, name = "email")
     @NotNull
     private String login;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_address",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id")
+    )
     private Address address;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(
