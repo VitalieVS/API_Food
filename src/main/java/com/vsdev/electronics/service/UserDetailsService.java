@@ -29,13 +29,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findUserByLogin(email);
 
-        System.out.println("HERE");
-        System.out.println(user);
-
-        System.out.println(user.get().getLogin());
-
         if (!user.isPresent()) throw new UsernameNotFoundException("Incorrect login or password");
-
 
         return new org.springframework.security.core.userdetails.User(
                 user.get().getLogin(), user.get().getPassword(), true,
