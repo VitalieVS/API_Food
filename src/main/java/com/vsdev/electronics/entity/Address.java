@@ -1,6 +1,5 @@
 package com.vsdev.electronics.entity;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;

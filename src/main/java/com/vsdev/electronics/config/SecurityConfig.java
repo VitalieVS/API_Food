@@ -2,6 +2,7 @@ package com.vsdev.electronics.config;
 
 import com.vsdev.electronics.entity.Permission;
 import com.vsdev.electronics.entity.Role;
+import com.vsdev.electronics.filter.JwtFilter;
 import com.vsdev.electronics.repository.RoleRepository;
 import com.vsdev.electronics.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Autowired
     private UserDetailsService userDetailsService;

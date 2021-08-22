@@ -15,9 +15,9 @@ import java.util.function.Function;
 public class JwtUtil {
     private final String secret = "jwttry";
 
-    public String generateToken(String username) {
+    public String generateToken(String login) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, username);
+        return createToken(claims, login);
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
