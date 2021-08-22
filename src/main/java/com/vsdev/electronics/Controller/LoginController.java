@@ -4,13 +4,12 @@ import com.vsdev.electronics.dto.AuthRequest;
 import com.vsdev.electronics.repository.UserRepository;
 import com.vsdev.electronics.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class LoginController {
@@ -34,10 +33,10 @@ public class LoginController {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword())
             );
-
         } catch (Exception e) {
-            throw new UsernameNotFoundException("Invalid username or password");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+
         return jwtUtil.generateToken(authRequest.getLogin());
     }
 }

@@ -35,10 +35,6 @@ public class UserDetailsService implements org.springframework.security.core.use
     public UserDetails loadUserByUsername(String email) {
         Optional<User> user = userRepository.findUserByLogin(email);
 
-        System.out.println("USER DETAILS SERVCE");
-        System.out.println(user.get().getPassword());
-        System.out.println(passwordEncoderService.encode(user.get().getPassword()));
-
         if (!user.isPresent()) throw new UsernameNotFoundException("Incorrect login or password");
 
         return new org.springframework.security.core.userdetails.User(
