@@ -17,4 +17,8 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+
+//    public Permission(String name) {
+//        this.name = name;
+//    }
 }
