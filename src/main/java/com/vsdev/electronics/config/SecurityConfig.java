@@ -4,6 +4,7 @@ import com.vsdev.electronics.entity.Permission;
 import com.vsdev.electronics.entity.Role;
 import com.vsdev.electronics.filter.JwtFilter;
 import com.vsdev.electronics.repository.RoleRepository;
+import com.vsdev.electronics.service.PasswordEncoderService;
 import com.vsdev.electronics.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -34,14 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoderService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoderService);
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

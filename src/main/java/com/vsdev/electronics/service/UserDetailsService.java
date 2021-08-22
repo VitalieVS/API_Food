@@ -7,10 +7,13 @@ import com.vsdev.electronics.repository.RoleRepository;
 import com.vsdev.electronics.repository.UserRepository;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,9 +28,16 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoderService;
+
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) {
         Optional<User> user = userRepository.findUserByLogin(email);
+
+        System.out.println("USER DETAILS SERVCE");
+        System.out.println(user.get().getPassword());
+        System.out.println(passwordEncoderService.encode(user.get().getPassword()));
 
         if (!user.isPresent()) throw new UsernameNotFoundException("Incorrect login or password");
 

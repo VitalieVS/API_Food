@@ -6,6 +6,7 @@ import com.vsdev.electronics.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,14 +29,14 @@ public class LoginController {
     }
 
     @PostMapping("/auth")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public String generateToken(@RequestBody AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword())
             );
 
         } catch (Exception e) {
-            throw new Exception("Invalid username or password");
+            throw new UsernameNotFoundException("Invalid username or password");
         }
         return jwtUtil.generateToken(authRequest.getLogin());
     }
