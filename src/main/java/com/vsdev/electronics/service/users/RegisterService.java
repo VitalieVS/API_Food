@@ -34,9 +34,6 @@ public class RegisterService {
 
         Role userRole = roleRepository.findRoleByRoleName("USER");
 
-        System.out.println("HERE ROLE");
-        System.out.println(userRole.getId());
-
         if (user.isPresent()) return false;
 
         User toRegister = new User();

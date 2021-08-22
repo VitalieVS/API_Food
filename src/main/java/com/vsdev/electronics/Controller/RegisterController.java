@@ -18,9 +18,4 @@ public class RegisterController {
     public boolean registerUser(@RequestBody RegisterRequest registerRequest) {
         return registerService.register(registerRequest);
     }
-
-    @GetMapping("/profile")
-    public String lala() {
-        return "sex";
-    }
 }
