@@ -2,19 +2,20 @@ package com.vsdev.electronics.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Table(name = "users")
+@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
-    @Column(name = "user_id", unique = true)
+    @Column(name = "user_id", nullable = false)
     private int id;
     @NotNull
     private String name;
@@ -23,6 +24,8 @@ public class User {
     @Column(name = "email")
     @NotNull
     private String login;
+    @NotNull
+    private String password;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_address",
