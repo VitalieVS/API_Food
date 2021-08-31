@@ -1,4 +1,4 @@
-package com.vsdev.electronics.entity;
+package com.vsdev.electronics.entity.user_related;
 
 import lombok.*;
 

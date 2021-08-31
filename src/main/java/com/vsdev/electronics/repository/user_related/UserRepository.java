@@ -1,6 +1,6 @@
-package com.vsdev.electronics.repository;
+package com.vsdev.electronics.repository.user_related;
 
-import com.vsdev.electronics.entity.User;
+import com.vsdev.electronics.entity.user_related.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

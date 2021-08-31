@@ -1,9 +1,9 @@
 package com.vsdev.electronics.config;
 
-import com.vsdev.electronics.entity.Permission;
-import com.vsdev.electronics.entity.Role;
+import com.vsdev.electronics.entity.user_related.Permission;
+import com.vsdev.electronics.entity.user_related.Role;
 import com.vsdev.electronics.filter.JwtFilter;
-import com.vsdev.electronics.repository.RoleRepository;
+import com.vsdev.electronics.repository.user_related.RoleRepository;
 import com.vsdev.electronics.service.users.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         http.authorizeRequests()
-                .antMatchers("/auth", "/register").permitAll().anyRequest()
+                .antMatchers("/auth", "/register", "/promotions").permitAll().anyRequest()
                 .authenticated().and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

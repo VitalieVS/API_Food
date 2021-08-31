@@ -1,13 +1,12 @@
-package com.vsdev.electronics.Controller;
+package com.vsdev.electronics.controller;
 
 import com.vsdev.electronics.dto.AuthRequest;
-import com.vsdev.electronics.repository.UserRepository;
+import com.vsdev.electronics.repository.user_related.UserRepository;
 import com.vsdev.electronics.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
