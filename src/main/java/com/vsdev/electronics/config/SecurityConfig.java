@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         http.authorizeRequests()
-                .antMatchers("/auth", "/register", "/promotions").permitAll().anyRequest()
+                .antMatchers("/auth", "/register", "/promotions", "/images/**").permitAll().anyRequest()
                 .authenticated().and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
