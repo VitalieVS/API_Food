@@ -22,4 +22,7 @@ public class Promotion {
     private String title;
     private String body;
     private String image;
+    @Column(name = "food_type")
+    private String foodType;
+    private int price;
 }
