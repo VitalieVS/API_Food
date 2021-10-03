@@ -1,22 +1,22 @@
-package com.vsdev.electronics.entity.user_related;
+package com.vsdev.electronics.entity.product_related;
 
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
+@Entity
+@Table(name = "ingredients")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "users_permissions")
-public class UserPermission {
+@Getter
+@Setter
+public class Ingredient {
     @Id
-    @NotNull
-    @Column(name = "permission_id")
+    @Column(name = "ingredient_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
 }
