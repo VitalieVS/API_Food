@@ -1,6 +1,6 @@
 CREATE TABLE addresses
 (
-    address_id     int,
+    address_id     int AUTO_INCREMENT,
     PRIMARY KEY (address_id),
     first_address  varchar(100),
     second_address varchar(100),

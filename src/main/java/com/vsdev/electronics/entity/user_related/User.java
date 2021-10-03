@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private int id;
     @NotNull
@@ -33,7 +33,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "address_id")
     )
     private Address address;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JoinTable(
             name = "users_role",
             joinColumns = @JoinColumn(name = "user_id"),

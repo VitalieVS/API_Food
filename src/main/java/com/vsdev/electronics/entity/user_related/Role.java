@@ -14,7 +14,7 @@ import java.util.Collection;
 public class Role {
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private int id;
 

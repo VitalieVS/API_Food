@@ -1,16 +1,18 @@
 package com.vsdev.electronics.entity.user_related;
 
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "permissions")
-public class Permission {
+@Table(name = "users_permissions")
+public class UserPermission {
     @Id
     @NotNull
     @Column(name = "permission_id")
