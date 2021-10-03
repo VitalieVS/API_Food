@@ -1,4 +1,4 @@
-package com.vsdev.electronics.controller;
+package com.vsdev.electronics.controller.product_related;
 
 import com.vsdev.electronics.entity.product_related.Promotion;
 import com.vsdev.electronics.repository.product_related.PromotionRepository;

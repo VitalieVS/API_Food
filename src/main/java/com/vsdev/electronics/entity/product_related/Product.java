@@ -14,6 +14,7 @@ public class Product {
     String title;
     int price;
     @OneToMany(fetch = FetchType.EAGER)
+
     @JoinTable(
             name = "products_ingredients",
             joinColumns = @JoinColumn(

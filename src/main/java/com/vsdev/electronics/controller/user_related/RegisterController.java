@@ -1,4 +1,4 @@
-package com.vsdev.electronics.controller;
+package com.vsdev.electronics.controller.user_related;
 
 import com.vsdev.electronics.dto.RegisterRequest;
 import com.vsdev.electronics.service.users.RegisterService;
