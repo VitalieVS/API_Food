@@ -11,7 +11,7 @@ CREATE TABLE promotions
 
 INSERT INTO promotions(id, title, body, image, food_type, price)
 VALUES (1, 'New Burgers', 'Try out our new delicious burgers! Buy 2 and receive 3 free',
-        'http://10.0.2.2:4546/images/burgers.jpg', 'Non vegetarian - Eggs', 85);
+        'http://10.0.2.2:4546/images/chicken_burger.jpg', 'Non vegetarian - Eggs', 85);
 
 INSERT INTO promotions(id, title, body, image, food_type, price)
 VALUES (2, 'Pizza 4 cheeses', 'Try out our new pizza! Buy 2 and receive 3 free',

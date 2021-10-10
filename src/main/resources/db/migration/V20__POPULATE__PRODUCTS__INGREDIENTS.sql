@@ -1,8 +1,8 @@
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (1, 'Chicken', 25, 1, 'chicken_burger.png');
+VALUES (1, 'Chicken', 25, 1, 'chicken_burger.jpg');
 
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (2, 'Black', 25, 4, 'black_burger.png');
+VALUES (2, 'Black', 25, 4, 'black_burger.jpg');
 
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
 VALUES (3, 'Pepperoni', 75, 2, 'pepperoni_pizza.png');
