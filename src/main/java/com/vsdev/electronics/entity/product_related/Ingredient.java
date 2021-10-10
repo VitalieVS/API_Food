@@ -20,5 +20,6 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "ingredient_name")
     private String name;
 }

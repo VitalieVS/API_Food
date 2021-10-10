@@ -10,10 +10,3 @@ CREATE TABLE products
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
-
-
-#
-# INSERT INTO products_ingredients (product_id, ingredients_id) VALUES (1,1);
-#
-# INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-# VALUES (1, 'Chicken Burger', 25, 1, 'chicken_burger.png');
