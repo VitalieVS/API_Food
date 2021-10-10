@@ -1,7 +1,7 @@
 package com.vsdev.electronics.controller.user_related;
 
 import com.vsdev.electronics.dto.RegisterRequest;
-import com.vsdev.electronics.service.users.RegisterService;
+import com.vsdev.electronics.service.users_related.users.RegisterService;
 import com.vsdev.electronics.util.RegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

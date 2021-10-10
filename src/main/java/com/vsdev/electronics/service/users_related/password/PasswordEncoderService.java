@@ -1,4 +1,4 @@
-package com.vsdev.electronics.service.password;
+package com.vsdev.electronics.service.users_related.password;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

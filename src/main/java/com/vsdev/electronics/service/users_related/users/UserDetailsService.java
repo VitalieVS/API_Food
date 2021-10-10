@@ -1,4 +1,4 @@
-package com.vsdev.electronics.service.users;
+package com.vsdev.electronics.service.users_related.users;
 
 import com.vsdev.electronics.entity.user_related.Permission;
 import com.vsdev.electronics.entity.user_related.Role;
