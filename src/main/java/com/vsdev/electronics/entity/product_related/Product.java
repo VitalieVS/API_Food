@@ -11,10 +11,17 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 public class Product {
-    String title;
-    int price;
-    @OneToMany(fetch = FetchType.EAGER)
 
+    @Id
+    @Column(name = "product_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    String title;
+
+    int price;
+
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "products_ingredients",
             joinColumns = @JoinColumn(
@@ -24,12 +31,7 @@ public class Product {
                     name = "ingredient_id",
                     referencedColumnName = "ingredient_id"))
     List<Ingredient> ingredients;
+
     @Column(name = "image_url")
-
     String imageURL;
-    @Id
-    @Column(name = "product_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
 }

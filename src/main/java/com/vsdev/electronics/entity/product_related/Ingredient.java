@@ -19,4 +19,6 @@ public class Ingredient {
     @Column(name = "ingredient_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    private String name;
 }

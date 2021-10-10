@@ -26,7 +26,7 @@ public class LoginController {
         return "Main page";
     }
 
-    @PostMapping("/auth")
+    @PostMapping("/login")
     public String generateToken(@RequestBody AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(
