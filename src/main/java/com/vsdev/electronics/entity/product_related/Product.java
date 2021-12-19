@@ -17,9 +17,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    String title;
+    private String title;
+    @Column(name = "is_vegetarian")
+    private boolean isVegetarian;
 
-    int price;
+    private int price;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
