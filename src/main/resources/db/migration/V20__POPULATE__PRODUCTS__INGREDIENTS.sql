@@ -1,14 +1,14 @@
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (1, 'Chicken', 25, 1, 'chicken_burger.jpg');
+VALUES (1, 'Chicken', 25, 1, 'http://10.0.2.2:4546/images/chicken_burger.jpg');
 
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (2, 'Black', 25, 4, 'black_burger.jpg');
+VALUES (2, 'Black', 25, 4, 'http://10.0.2.2:4546/images/black_burger.jpg');
 
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (3, 'Pepperoni', 75, 2, 'pepperoni_pizza.png');
+VALUES (3, 'Pepperoni', 75, 2, 'http://10.0.2.2:4546/images/pepperoni_pizza.png');
 
 INSERT INTO products (product_id, title, price, ingredients_id, image_url)
-VALUES (4, 'Neapolitan', 80, 3, 'chicken_burger.png');
+VALUES (4, 'Neapolitan', 80, 3, 'http://10.0.2.2:4546/images/chicken_burger.png');
 
 
 INSERT INTO products_ingredients (product_id, ingredient_id)
