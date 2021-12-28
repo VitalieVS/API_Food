@@ -3,6 +3,7 @@ CREATE TABLE products
     product_id     int          not null AUTO_INCREMENT,
     title          varchar(30)  not null,
     price          int          not null,
+    weight         int          not null,
     is_vegetarian  bool         not null,
     ingredients_id int          not null,
     image_url      varchar(100) not null,

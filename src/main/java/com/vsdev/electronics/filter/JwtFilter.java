@@ -1,7 +1,7 @@
 package com.vsdev.electronics.filter;
 
 import com.sun.istack.NotNull;
-import com.vsdev.electronics.service.users_related.users.UserDetailsService;
+import com.vsdev.electronics.service.users.users.UserDetailsService;
 import com.vsdev.electronics.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

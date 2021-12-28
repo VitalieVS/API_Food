@@ -1,7 +1,7 @@
 package com.vsdev.electronics.dto;
 
 import com.sun.istack.NotNull;
-import com.vsdev.electronics.entity.user_related.Address;
+import com.vsdev.electronics.entity.user.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

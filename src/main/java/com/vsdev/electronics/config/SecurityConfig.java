@@ -1,10 +1,10 @@
 package com.vsdev.electronics.config;
 
-import com.vsdev.electronics.entity.user_related.Permission;
-import com.vsdev.electronics.entity.user_related.Role;
+import com.vsdev.electronics.entity.user.Permission;
+import com.vsdev.electronics.entity.user.Role;
 import com.vsdev.electronics.filter.JwtFilter;
-import com.vsdev.electronics.repository.user_related.RoleRepository;
-import com.vsdev.electronics.service.users_related.users.UserDetailsService;
+import com.vsdev.electronics.repository.user.RoleRepository;
+import com.vsdev.electronics.service.users.users.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.vsdev.electronics.util;
 
 import com.vsdev.electronics.dto.RegisterRequest;
-import com.vsdev.electronics.repository.user_related.UserRepository;
+import com.vsdev.electronics.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
