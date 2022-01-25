@@ -10,6 +10,9 @@ VALUES (3, 'Pepperoni', 75, 500, false, 2, 'http://10.0.2.2:4546/images/pepperon
 INSERT INTO products (product_id, title, price, weight, is_vegetarian, ingredients_id, image_url)
 VALUES (4, 'Neapolitan', 80, 250, false, 3, 'http://10.0.2.2:4546/images/chicken_burger.png');
 
+INSERT INTO products (product_id, title, price, weight, is_vegetarian, ingredients_id, image_url)
+VALUES (5, 'Philadelphia', 95, 180, false, 4, 'http://10.0.2.2:4546/images/philadelphia.png');
+
 
 INSERT INTO products_ingredients (product_id, ingredient_id)
 VALUES (1, 1);
@@ -50,3 +53,11 @@ INSERT INTO products_ingredients (product_id, ingredient_id)
 VALUES (3, 11);
 INSERT INTO products_ingredients (product_id, ingredient_id)
 VALUES (3, 7);
+
+
+INSERT INTO products_ingredients (product_id, ingredient_id)
+VALUES (5, 13);
+INSERT INTO products_ingredients (product_id, ingredient_id)
+VALUES (5, 14);
+INSERT INTO products_ingredients (product_id, ingredient_id)
+VALUES (5, 15);

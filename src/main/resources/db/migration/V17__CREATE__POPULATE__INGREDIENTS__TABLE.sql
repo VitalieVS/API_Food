@@ -29,3 +29,10 @@ INSERT INTO ingredients (ingredient_id, ingredient_name)
 VALUES (11, 'Cheese');
 INSERT INTO ingredients (ingredient_id, ingredient_name)
 VALUES (12, 'Black Bread');
+
+INSERT INTO ingredients (ingredient_id, ingredient_name)
+VALUES (13, 'Philadelphia cheese');
+INSERT INTO ingredients (ingredient_id, ingredient_name)
+VALUES (14, 'Smoked salmon');
+INSERT INTO ingredients (ingredient_id, ingredient_name)
+VALUES (15, 'Rice');

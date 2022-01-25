@@ -1,5 +1,6 @@
 package com.vsdev.electronics.util;
 
+import com.vsdev.electronics.dto.LoginResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,9 +16,12 @@ import java.util.function.Function;
 public class JwtUtil {
     private final String secret = "jwttry";
 
-    public String generateToken(String login) {
+    public LoginResponse generateToken(String login) {
+
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, login);
+
+
+        return new LoginResponse(login, createToken(claims, login));
     }
 
     private String createToken(Map<String, Object> claims, String subject) {

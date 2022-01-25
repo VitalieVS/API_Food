@@ -1,6 +1,7 @@
 package com.vsdev.electronics.controller.user;
 
 import com.vsdev.electronics.dto.AuthRequest;
+import com.vsdev.electronics.dto.LoginResponse;
 import com.vsdev.electronics.repository.user.UserRepository;
 import com.vsdev.electronics.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String generateToken(@RequestBody AuthRequest authRequest) {
+    public LoginResponse generateToken(@RequestBody AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword())
