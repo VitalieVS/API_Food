@@ -1,9 +1,11 @@
 package com.vsdev.electronics.entity.user;
 
 import com.sun.istack.NotNull;
+import com.vsdev.electronics.entity.product.Product;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,4 +43,15 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Role role;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "products_orders",
+            joinColumns = @JoinColumn(
+                    name = "product_id",
+                    referencedColumnName = "product_id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "user_id"))
+    private List<Product> ordersList;
 }
