@@ -23,16 +23,16 @@ CREATE TABLE products_ingredients
 );
 
 INSERT INTO products (product_id, title, price, weight, is_vegetarian, image_url, product_category_id, quantity)
-VALUES (1, 'Chicken', 25, 280, true, 'http://10.0.2.2:4546/images/chicken_hamb.png', 1, 0);
+VALUES (1, 'Chicken', 25, 280, true, 'http://10.0.2.2:4546/images/chicken_hamb.png', 1, 1);
 
 INSERT INTO products (product_id, title, price, weight, is_vegetarian, image_url, product_category_id, quantity)
-VALUES (2, 'Black', 25, 300, false, 'http://10.0.2.2:4546/images/black_hamb.png', 1, 0);
+VALUES (2, 'Black', 25, 300, false, 'http://10.0.2.2:4546/images/black_hamb.png', 1, 1);
 
 INSERT INTO products (product_id, title, price, weight, is_vegetarian, image_url, product_category_id, quantity)
-VALUES (3, 'Pepperoni', 75, 500, false, 'http://10.0.2.2:4546/images/pepperoni_pizza.png', 2, 0);
+VALUES (3, 'Pepperoni', 75, 500, false, 'http://10.0.2.2:4546/images/pizza_neap.png', 2, 1);
 
 INSERT INTO products (product_id, title, price, weight, is_vegetarian, image_url, product_category_id, quantity)
-VALUES (5, 'Philadelphia', 95, 180, false, 'http://10.0.2.2:4546/images/philadelphia.png', 3, 0);
+VALUES (5, 'Philadelphia', 95, 180, false, 'http://10.0.2.2:4546/images/philadelphia.png', 3, 1);
 
 
 INSERT INTO products_ingredients (product_id, ingredient_id)
