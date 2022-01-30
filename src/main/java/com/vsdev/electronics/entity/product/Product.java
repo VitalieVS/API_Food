@@ -1,5 +1,8 @@
 package com.vsdev.electronics.entity.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vsdev.electronics.entity.order.Order;
+import com.vsdev.electronics.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +21,7 @@ public class Product {
     private int id;
 
     private String title;
+
     @Column(name = "is_vegetarian")
     private boolean isVegetarian;
 
@@ -25,17 +29,31 @@ public class Product {
 
     private int weight;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "products_ingredients",
-            joinColumns = @JoinColumn(
-                    name = "product_id",
-                    referencedColumnName = "product_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "ingredient_id",
-                    referencedColumnName = "ingredient_id"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "products_ingredients",
+            joinColumns = {
+                    @JoinColumn(name = "product_id", referencedColumnName = "product_id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id",
+                            nullable = false, updatable = false)})
     List<Ingredient> ingredients;
 
     @Column(name = "image_url")
     String imageURL;
+
+    @JsonIgnore
+    @ManyToOne
+    private Category product;
+
+    @ManyToMany(mappedBy = "ordersList")
+    @JsonIgnore
+    private List<User> users;
+
+    @ManyToMany(mappedBy = "productList")
+    @JsonIgnore
+    private List<Order> orders;
+
+    private int quantity;
+
 }

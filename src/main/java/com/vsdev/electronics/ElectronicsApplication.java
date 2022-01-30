@@ -26,7 +26,7 @@ public class ElectronicsApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
+       Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
     }
 
 }

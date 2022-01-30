@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {
+
     @Id
     @Column(name = "category_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +25,7 @@ public class Category {
     @Column(name = "category_name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "categories_products",
-            joinColumns = @JoinColumn(
-                    name = "category_id",
-                    referencedColumnName = "category_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "product_id",
-                    referencedColumnName = "product_id"))
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_category_id")
     private List<Product> productList;
 }

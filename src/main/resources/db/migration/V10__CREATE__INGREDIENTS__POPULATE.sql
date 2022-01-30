@@ -3,7 +3,7 @@ CREATE TABLE ingredients
     ingredient_id   int not null AUTO_INCREMENT,
     ingredient_name varchar(30),
     PRIMARY KEY (ingredient_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO ingredients (ingredient_id, ingredient_name)
 VALUES (1, 'Eggs');

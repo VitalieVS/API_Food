@@ -24,8 +24,8 @@ public class RegisterValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        RegisterRequest request = (RegisterRequest) o;
 
+        RegisterRequest request = (RegisterRequest) o;
 
         if (userRepository.findUserByLogin(request.getEmail()).isPresent()) {
             errors.rejectValue("email", "This email is already registered!");

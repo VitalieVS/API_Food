@@ -32,6 +32,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public LoginResponse generateToken(@RequestBody AuthRequest authRequest) {
+
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword())

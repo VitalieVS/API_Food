@@ -31,6 +31,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Override
     public UserDetails loadUserByUsername(String email) {
+
         Optional<User> user = userRepository.findUserByLogin(email);
 
         if (!user.isPresent()) throw new UsernameNotFoundException("Incorrect login or password");
@@ -45,10 +46,12 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     private Collection<? extends GrantedAuthority> getAuthorities(
             Collection<Role> roles) {
+
         return getGrantedAuthorities(getPermissions(roles));
     }
 
     private List<GrantedAuthority> getGrantedAuthorities(List<String> permissions) {
+
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (String permission : permissions) {
             authorities.add(new SimpleGrantedAuthority(permission));
@@ -58,6 +61,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     }
 
     private List<String> getPermissions(Collection<Role> roles) {
+
         List<String> permissions = new ArrayList<>();
         List<Permission> permissionsContainer = new ArrayList<>();
 

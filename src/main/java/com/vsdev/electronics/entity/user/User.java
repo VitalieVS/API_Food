@@ -1,8 +1,12 @@
 package com.vsdev.electronics.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import com.vsdev.electronics.entity.product.Product;
-import lombok.*;
+import com.vsdev.electronics.entity.order.Order;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Table(name = "users")
 @Entity
 public class User {
@@ -19,15 +22,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private int id;
+
     @NotNull
     private String name;
+
     @NotNull
     private String surname;
+
     @Column(name = "email")
     @NotNull
     private String login;
+
     @NotNull
+    @JsonIgnore
     private String password;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_address",
@@ -35,6 +44,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "address_id")
     )
     private Address address;
+
     @OneToOne(cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JoinTable(
@@ -42,16 +52,17 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonIgnore
     private Role role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "products_orders",
+            name = "users_orders",
             joinColumns = @JoinColumn(
-                    name = "product_id",
-                    referencedColumnName = "product_id"),
-            inverseJoinColumns = @JoinColumn(
                     name = "user_id",
-                    referencedColumnName = "user_id"))
-    private List<Product> ordersList;
+                    referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "order_id",
+                    referencedColumnName = "order_id"))
+    private List<Order> ordersList;
 }

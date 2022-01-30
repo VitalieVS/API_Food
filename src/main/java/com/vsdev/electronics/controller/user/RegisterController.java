@@ -21,6 +21,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public boolean registerUser(@RequestBody @Validated RegisterRequest registerRequest, BindingResult result) {
+
         registerValidator.validate(registerRequest, result);
         if (result.hasErrors()) {
             return false;
