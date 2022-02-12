@@ -1,21 +1,25 @@
 package com.vsdev.electronics;
 
 
-import com.vsdev.electronics.util.SQLAccessor;
-import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.vsdev.electronics.util.sql.SQLAccessor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
 
 @SpringBootApplication
 public class ElectronicsApplication implements CommandLineRunner {
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    @Inject
+    public ElectronicsApplication(DataSource dataSource) {
+
+        this.dataSource = dataSource;
+    }
 
     public static void main(String[] args) {
 
@@ -26,7 +30,7 @@ public class ElectronicsApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-       Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
+        //  Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
     }
 
 }

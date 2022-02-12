@@ -2,8 +2,7 @@ package com.vsdev.electronics.filter;
 
 import com.sun.istack.NotNull;
 import com.vsdev.electronics.service.users.users.UserDetailsService;
-import com.vsdev.electronics.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.vsdev.electronics.util.jwt.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.inject.Inject;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,19 +19,27 @@ import java.io.IOException;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-    @Autowired
-    private JwtUtil jwtUtil;
 
-    @Autowired
-    private UserDetailsService service;
+    private final JwtUtil jwtUtil;
+
+    private final UserDetailsService service;
+
+    @Inject
+    public JwtFilter(JwtUtil jwtUtil, UserDetailsService service) {
+
+        this.jwtUtil = jwtUtil;
+        this.service = service;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
                                     @NotNull HttpServletResponse httpServletResponse,
                                     @NotNull FilterChain filterChain) throws ServletException, IOException {
+
         String authorizationHeader = httpServletRequest.getHeader("Authorization");
         String token = null;
         String username = null;
+
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
             token = authorizationHeader.substring(7);
             username = jwtUtil.extractUsername(token);

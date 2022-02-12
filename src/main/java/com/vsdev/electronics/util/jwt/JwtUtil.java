@@ -1,4 +1,4 @@
-package com.vsdev.electronics.util;
+package com.vsdev.electronics.util.jwt;
 
 import com.vsdev.electronics.dto.LoginResponse;
 import io.jsonwebtoken.Claims;
@@ -14,24 +14,25 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtil {
+
     private final String secret = "jwttry";
 
     public LoginResponse generateToken(String login) {
 
         Map<String, Object> claims = new HashMap<>();
 
-
         return new LoginResponse(login, createToken(claims, login));
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
+
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(
                         new Date(System.currentTimeMillis())
                 ).setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
@@ -40,10 +41,12 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
+
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
+
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
@@ -53,6 +56,7 @@ public class JwtUtil {
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }

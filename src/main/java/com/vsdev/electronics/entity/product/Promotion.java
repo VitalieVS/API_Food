@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Promotion {
+
     @Id
     @Column(name = "id", nullable = false)
     @NotNull

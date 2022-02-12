@@ -5,7 +5,6 @@ import com.vsdev.electronics.entity.user.Role;
 import com.vsdev.electronics.filter.JwtFilter;
 import com.vsdev.electronics.repository.user.RoleRepository;
 import com.vsdev.electronics.service.users.users.UserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,23 +17,33 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtFilter jwtFilter;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final JwtFilter jwtFilter;
 
-    @Autowired
-    private RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoderService;
+    private final UserDetailsService userDetailsService;
+
+
+    private final RoleRepository roleRepository;
+
+
+    private final PasswordEncoder passwordEncoderService;
+
+    @Inject
+    public SecurityConfig(JwtFilter jwtFilter, UserDetailsService userDetailsService, RoleRepository roleRepository, PasswordEncoder passwordEncoderService) {
+        this.jwtFilter = jwtFilter;
+        this.userDetailsService = userDetailsService;
+        this.roleRepository = roleRepository;
+        this.passwordEncoderService = passwordEncoderService;
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,11 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
+
         return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         List<Role> roles = roleRepository.findAll();
         http.csrf().disable();
 
@@ -60,7 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         http.authorizeRequests()
-                .antMatchers("/login", "/register", "/promotions", "/images/**", "/categories")
+                .antMatchers("/login", "/register", "/promotions", "/images/**", "/categories", "/user/**",
+                        "/reset/**", "/resetpassword")
                 .permitAll().anyRequest().authenticated().and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

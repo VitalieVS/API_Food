@@ -1,4 +1,4 @@
-package com.vsdev.electronics.util;
+package com.vsdev.electronics.util.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ public class SQLAccessor {
         final String PASS = "";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = conn.createStatement();
+             Statement stmt = conn.createStatement()
         ) {
             String sql = "CREATE DATABASE IF NOT EXISTS vsdev_shop";
             stmt.executeUpdate(sql);

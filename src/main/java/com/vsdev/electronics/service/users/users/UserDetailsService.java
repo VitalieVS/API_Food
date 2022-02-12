@@ -6,7 +6,6 @@ import com.vsdev.electronics.entity.user.User;
 import com.vsdev.electronics.repository.user.RoleRepository;
 import com.vsdev.electronics.repository.user.UserRepository;
 import lombok.Builder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,20 +13,29 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.*;
 
 @Service
 @Builder
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-    @Autowired
+
     private RoleRepository roleRepository;
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private PasswordEncoder passwordEncoderService;
+
+    @Inject
+    public UserDetailsService(RoleRepository roleRepository,
+                              UserRepository userRepository,
+                              PasswordEncoder passwordEncoderService) {
+
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoderService = passwordEncoderService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
