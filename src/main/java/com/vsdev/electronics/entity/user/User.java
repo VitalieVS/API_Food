@@ -18,6 +18,7 @@ import java.util.List;
 @Table(name = "users")
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
@@ -37,7 +38,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinTable(
             name = "users_address",
             joinColumns = @JoinColumn(name = "user_id"),

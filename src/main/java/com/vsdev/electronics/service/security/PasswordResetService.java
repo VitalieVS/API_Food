@@ -22,7 +22,6 @@ import java.util.Optional;
 @Service
 public class PasswordResetService {
 
-
     private final UserRepository userRepository;
 
     private final PasswordResetRepository passwordResetRepository;

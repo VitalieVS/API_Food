@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,9 +33,9 @@ public class Address {
 
     private String country;
 
-    @OneToOne(mappedBy = "address")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
     @JsonIgnore
-    private User user;
+    private List<User> user;
 
     @OneToOne(mappedBy = "shippingAddress")
     @JsonIgnore
