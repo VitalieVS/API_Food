@@ -28,4 +28,7 @@ public class Category {
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_category_id")
     private List<Product> productList;
+
+    @Column(name = "image_url")
+    private String imageURL;
 }

@@ -2,6 +2,7 @@ package com.vsdev.electronics.service.security;
 
 import com.vsdev.electronics.controller.security.UserNotFoundException;
 import com.vsdev.electronics.controller.security.pojo.Password;
+import com.vsdev.electronics.dto.ResetLoggedPasswordRequest;
 import com.vsdev.electronics.entity.security.GenericResponse;
 import com.vsdev.electronics.entity.security.PasswordReset;
 import com.vsdev.electronics.entity.user.User;
@@ -11,6 +12,9 @@ import com.vsdev.electronics.util.jwt.JwtUtil;
 import com.vsdev.electronics.util.mail.Templates;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +49,48 @@ public class PasswordResetService {
         this.javaMailSender = javaMailSender;
         this.passwordEncoder = passwordEncoder;
     }
+
+    public GenericResponse resetLoggedPassword(ResetLoggedPasswordRequest resetLoggedPasswordRequest) {
+
+        System.out.println(resetLoggedPasswordRequest.getCurrentPassword());
+        System.out.println(resetLoggedPasswordRequest.getChangeToPassword());
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email = userDetails.getUsername();
+
+        GenericResponse response = new GenericResponse("Password changed!", "Success!");
+
+        Optional<User> userInDB = userRepository.findUserByLogin(email);
+
+        try {
+
+            if (!userInDB.isPresent()) {
+
+                response.setMessage("Not found");
+                response.setError("Error");
+                throw new UserNotFoundException("User not found");
+            }
+
+            if (encoder.matches(resetLoggedPasswordRequest.getCurrentPassword(), userInDB.get().getPassword())) {
+
+                userInDB.get().setPassword(passwordEncoder.encode(resetLoggedPasswordRequest.getChangeToPassword()));
+                userRepository.save(userInDB.get());
+            } else {
+
+                response.setMessage("Could not change password!");
+                response.setError("Error!");
+            }
+
+
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
 
     public GenericResponse resetPassword(String email) {
 

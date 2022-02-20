@@ -37,7 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoderService;
 
     @Inject
-    public SecurityConfig(JwtFilter jwtFilter, UserDetailsService userDetailsService, RoleRepository roleRepository, PasswordEncoder passwordEncoderService) {
+    public SecurityConfig(JwtFilter jwtFilter,
+                          UserDetailsService userDetailsService,
+                          RoleRepository roleRepository,
+                          PasswordEncoder passwordEncoderService) {
+
         this.jwtFilter = jwtFilter;
         this.userDetailsService = userDetailsService;
         this.roleRepository = roleRepository;
@@ -47,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoderService);
     }
 
@@ -65,13 +70,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         for (Role role : roles) {
             for (Permission permission : role.getPermissions()) {
+
                 http.authorizeRequests()
                         .antMatchers(permission.getName()).hasAuthority(permission.getName());
             }
         }
 
         http.authorizeRequests()
-                .antMatchers("/login", "/register", "/promotions", "/images/**", "/categories", "/user/**",
+                .antMatchers("/login", "/register", "/promotions", "/images/**", "/categories",
                         "/reset/**", "/resetpassword")
                 .permitAll().anyRequest().authenticated().and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

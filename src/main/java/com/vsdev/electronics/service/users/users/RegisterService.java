@@ -7,7 +7,6 @@ import com.vsdev.electronics.entity.user.User;
 import com.vsdev.electronics.repository.address.AddressRepository;
 import com.vsdev.electronics.repository.user.RoleRepository;
 import com.vsdev.electronics.repository.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,17 +25,18 @@ public class RegisterService {
 
     private final RoleRepository roleRepository;
 
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     @Inject
     public RegisterService(UserRepository userRepository,
                            PasswordEncoder passwordEncoder,
-                           RoleRepository roleRepository) {
+                           RoleRepository roleRepository,
+                           AddressRepository addressRepository) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.addressRepository = addressRepository;
     }
 
     @Transactional
