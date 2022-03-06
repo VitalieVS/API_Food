@@ -18,7 +18,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getUser(String login) {
+    public User getUser(String login) {  // wrong approach.
 
         Optional<User> userInDB = userRepository.findUserByLogin(login);
 

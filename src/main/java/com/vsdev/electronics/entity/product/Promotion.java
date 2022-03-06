@@ -1,12 +1,14 @@
 package com.vsdev.electronics.entity.product;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vsdev.electronics.entity.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "promotions")
@@ -17,10 +19,9 @@ import javax.persistence.*;
 public class Promotion {
 
     @Id
-    @Column(name = "id", nullable = false)
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int promotionId;
+    @Column(name = "promotion_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String title;
 
@@ -32,4 +33,8 @@ public class Promotion {
     private String foodType;
 
     private int price;
+
+    @ManyToMany(mappedBy = "promotionList")
+    @JsonIgnore
+    private List<Order> orders;
 }
