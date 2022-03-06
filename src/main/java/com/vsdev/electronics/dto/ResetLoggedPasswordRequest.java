@@ -16,4 +16,5 @@ public class ResetLoggedPasswordRequest {
 
     @JsonProperty("firstChangeToPassword")
     private String changeToPassword;
+
 }

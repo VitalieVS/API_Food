@@ -22,7 +22,7 @@ public class UserResetPasswordController {
         this.passwordResetService = passwordResetService;
     }
 
-    @PostMapping("/user/resetPassword")
+    @PostMapping("/resetPassword")
     public GenericResponse resetPassword(@RequestParam("email") String userEmail) {
 
         return passwordResetService.resetPassword(userEmail);

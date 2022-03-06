@@ -1,16 +1,18 @@
 package com.vsdev.electronics.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginResponse {
+@Getter
+@Setter
+public class AddressResponse {
 
-    private String login;
+    private String error;
 
-    private String token;
+    private String message;
 
 }

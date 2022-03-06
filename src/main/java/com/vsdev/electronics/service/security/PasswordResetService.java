@@ -52,9 +52,6 @@ public class PasswordResetService {
 
     public GenericResponse resetLoggedPassword(ResetLoggedPasswordRequest resetLoggedPasswordRequest) {
 
-        System.out.println(resetLoggedPasswordRequest.getCurrentPassword());
-        System.out.println(resetLoggedPasswordRequest.getChangeToPassword());
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

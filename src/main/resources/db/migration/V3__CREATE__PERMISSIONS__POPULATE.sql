@@ -9,3 +9,5 @@ INSERT INTO permissions(permission_id, name)
 VALUES (1, '/user/**');
 INSERT INTO permissions(permission_id, name)
 VALUES (2, '/createOrder');
+INSERT INTO permissions(permission_id, name)
+VALUES (3, '/user/address');
