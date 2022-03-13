@@ -4,7 +4,6 @@ package com.vsdev.electronics.entity.order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vsdev.electronics.entity.product.Product;
 import com.vsdev.electronics.entity.product.Promotion;
-import com.vsdev.electronics.entity.user.Address;
 import com.vsdev.electronics.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,14 +26,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id", nullable = false)
     private int id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "order_address",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_id")
-    )
-    private Address shippingAddress;
 
     @ManyToMany(mappedBy = "ordersList", fetch = FetchType.LAZY)
     @JsonIgnore
@@ -75,4 +66,9 @@ public class Order {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
+    @Column(name = "cash_back_applied")
+    private double cashBackApplied;
 }

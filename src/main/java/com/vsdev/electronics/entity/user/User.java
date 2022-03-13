@@ -67,6 +67,8 @@ public class User {
                     referencedColumnName = "order_id"))
     private List<Order> ordersList;
 
-    @Column(name = "total_spent_money")
-    private float totalSpentMoney;
+    @Column(name = "total_cash_back")
+    private double totalCashBack;
+
+    private String phone;
 }

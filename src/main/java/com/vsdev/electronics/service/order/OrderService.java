@@ -46,25 +46,9 @@ public class OrderService {
 
         if (currentUser.isPresent()) {
 
-            double totalOrderPrice = 0;
+            double orderPrice = getTotalOrderPrice(order);
 
-            if (order.getProductList().size() > 0) {
-
-                for (int i = 0; i < order.getProductList().size(); i++) {
-
-                    totalOrderPrice += order.getProductList().get(i).getPrice() *
-                            order.getProductList().get(i).getQuantity();
-                }
-            }
-
-            if (order.getPromotionList().size() > 0) {
-
-                for (int i = 0; i < order.getPromotionList().size(); totalOrderPrice +=
-                        order.getPromotionList().get(i++).getPrice())
-                    ;
-            }
-
-            order.setTotalPrice(totalOrderPrice);
+            order.setTotalPrice(orderPrice);
 
             List<Order> newOrderList = new ArrayList<>(currentUser.get().getOrdersList());
 
@@ -82,9 +66,13 @@ public class OrderService {
 
             currentUser.get().setOrdersList(newOrderList);
 
-            userRepository.save(currentUser.get());
+            double cashBackPercentage = 0.03 * orderPrice;
 
-            calculateTotalSpentMoney();
+            currentUser.get().setTotalCashBack(currentUser.get().getTotalCashBack() + cashBackPercentage);
+
+            currentUser.get().setTotalCashBack(currentUser.get().getTotalCashBack() - order.getCashBackApplied());
+
+            userRepository.save(currentUser.get());
 
             orderResponse.setCreated(true);
             orderResponse.setMessage("Order created!");
@@ -93,24 +81,27 @@ public class OrderService {
         return orderResponse;
     }
 
-    private void calculateTotalSpentMoney() {
+    public double getTotalOrderPrice(Order order) {
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        double totalOrderPrice = 0;
 
-        Optional<User> currentUser = userRepository.findUserByLogin(userDetails.getUsername());
+        if (order.getProductList().size() > 0) {
 
-        if (currentUser.isPresent()) {
+            for (int i = 0; i < order.getProductList().size(); i++) {
 
-            float totalSpentMoney = 0;
-
-            for (Order order : currentUser.get().getOrdersList()) {
-
-                totalSpentMoney += order.getTotalPrice();
+                totalOrderPrice += order.getProductList().get(i).getPrice() *
+                        order.getProductList().get(i).getQuantity();
             }
-
-            currentUser.get().setTotalSpentMoney(totalSpentMoney);
-
-            userRepository.save(currentUser.get());
         }
+
+        if (order.getPromotionList().size() > 0) {
+
+            for (int i = 0; i < order.getPromotionList().size(); totalOrderPrice +=
+                    order.getPromotionList().get(i++).getPrice())
+                ;
+        }
+
+        return totalOrderPrice - order.getCashBackApplied();
     }
+
 }

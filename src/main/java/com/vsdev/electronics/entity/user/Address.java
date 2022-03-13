@@ -1,7 +1,6 @@
 package com.vsdev.electronics.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vsdev.electronics.entity.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +36,4 @@ public class Address {
     @JsonIgnore
     private List<User> user;
 
-    @OneToOne(mappedBy = "shippingAddress")
-    @JsonIgnore
-    private Order order;
 }

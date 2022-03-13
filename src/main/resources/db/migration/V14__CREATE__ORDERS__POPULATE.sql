@@ -1,19 +1,13 @@
 CREATE TABLE orders
 (
-    order_id     int not null unique AUTO_INCREMENT,
+    order_id          int not null unique AUTO_INCREMENT,
     PRIMARY KEY (order_id),
-    total_price  double,
-    order_date   date,
-    order_status varchar(50),
-    image_url    varchar(250)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE order_address
-(
-    address_id int not null,
-    FOREIGN KEY (address_id) REFERENCES addresses (address_id),
-    order_id   int not null,
-    FOREIGN KEY (order_id) REFERENCES orders (order_id)
+    total_price       double,
+    order_date        date,
+    order_status      varchar(50),
+    image_url         varchar(250),
+    payment_method    varchar(100),
+    cash_back_applied double
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE users_orders
