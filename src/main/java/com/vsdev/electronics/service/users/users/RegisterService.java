@@ -19,9 +19,7 @@ public class RegisterService {
 
     private final UserRepository userRepository;
 
-
     private final PasswordEncoder passwordEncoder;
-
 
     private final RoleRepository roleRepository;
 
@@ -51,6 +49,7 @@ public class RegisterService {
             toRegister.setName(registerRequest.getName());
             toRegister.setSurname(registerRequest.getSurname());
             toRegister.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+            toRegister.setPhone(registerRequest.getPhone());
             Address address = addressRepository.save(registerRequest.getAddress());
             toRegister.setAddress(address);
             toRegister.setRole(createUserRole());

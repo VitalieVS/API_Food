@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/login", "/register", "/promotions", "/images/**", "/categories",
-                        "/reset/**", "/resetPassword")
+                        "/reset/**", "/reset/password")
                 .permitAll().anyRequest().authenticated().and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

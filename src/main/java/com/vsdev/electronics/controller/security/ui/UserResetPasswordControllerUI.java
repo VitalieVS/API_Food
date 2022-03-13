@@ -32,7 +32,7 @@ public class UserResetPasswordControllerUI {
     }
 
 
-    @PostMapping("/resetpassword")
+    @PostMapping("/reset/password-ui")
     public String getResetView(@ModelAttribute Password password, Model model) {
 
         return this.passwordResetService.handlePOSTReset(password);
