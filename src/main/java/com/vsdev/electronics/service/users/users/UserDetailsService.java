@@ -20,7 +20,6 @@ import java.util.*;
 @Builder
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-
     private RoleRepository roleRepository;
 
     private UserRepository userRepository;

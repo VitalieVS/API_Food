@@ -24,15 +24,11 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     private final JwtFilter jwtFilter;
-
 
     private final UserDetailsService userDetailsService;
 
-
     private final RoleRepository roleRepository;
-
 
     private final PasswordEncoder passwordEncoderService;
 

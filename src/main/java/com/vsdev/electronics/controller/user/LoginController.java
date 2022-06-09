@@ -18,7 +18,6 @@ public class LoginController {
 
     private final JwtUtil jwtUtil;
 
-
     private final AuthenticationManager authenticationManager;
 
     @Inject
